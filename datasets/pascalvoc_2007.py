@@ -16,10 +16,11 @@
 """
 import tensorflow as tf
 from datasets import pascalvoc_common
+import tensorflow.contrib.slim as slim
+# slim = tf.contrib.slim
 
-slim = tf.contrib.slim
-
-FILE_PATTERN = 'voc_2007_%s_*.tfrecord'
+# FILE_PATTERN = 'voc_2007_%s_*.tfrecord'
+FILE_PATTERN = 'pascalvoc2007_*.tfrecord'
 ITEMS_TO_DESCRIPTIONS = {
     'image': 'A color image of varying height and width.',
     'shape': 'Shape of the image',

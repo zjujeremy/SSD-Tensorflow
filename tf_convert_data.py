@@ -24,6 +24,7 @@ python tf_convert_data.py \
     --output_dir=/tmp/
 ```
 """
+import os
 import tensorflow as tf
 
 from datasets import pascalvoc_to_tfrecords
@@ -34,19 +35,21 @@ tf.app.flags.DEFINE_string(
     'dataset_name', 'pascalvoc',
     'The name of the dataset to convert.')
 tf.app.flags.DEFINE_string(
-    'dataset_dir', None,
+    'dataset_dir', '../VOCImageDatasets/VOCdevkit2007/VOC2007/',
     'Directory where the original dataset is stored.')
 tf.app.flags.DEFINE_string(
-    'output_name', 'pascalvoc',
+    'output_name', 'pascalvoc2007',
     'Basename used for TFRecords output files.')
 tf.app.flags.DEFINE_string(
-    'output_dir', './',
+    'output_dir', './tfRecord/VOC2007/',
     'Output directory where to store TFRecords files.')
 
 
 def main(_):
     if not FLAGS.dataset_dir:
         raise ValueError('You must supply the dataset directory with --dataset_dir')
+    FLAGS.dataset_dir = os.path.abspath(FLAGS.dataset_dir)
+    FLAGS.output_dir = os.path.abspath(FLAGS.output_dir)
     print('Dataset directory:', FLAGS.dataset_dir)
     print('Output directory:', FLAGS.output_dir)
 
